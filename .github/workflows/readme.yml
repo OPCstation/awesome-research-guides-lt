@@ -52,10 +52,10 @@ jobs:
           commit-message: "update readme"
           body: "An automatic readme update generated from references."
           committer: ${{ github.actor }} <${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com>
-          token: ${{ github.token }}
+          token: ${{ secrets.GH_PAT }}
       - if: steps.pr.outputs.pull-request-number
         run: |
           git config --global --add safe.directory /__w/awesome-research-guides/awesome-research-guides
           gh pr merge --squash --auto ${{ steps.pr.outputs.pull-request-number }}
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.GH_PAT }}
